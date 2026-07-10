@@ -1,0 +1,36 @@
+%nohup zathura ./build/notes.pdf > /dev/null &
+
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\begin{document}
+
+\section{Twice.c}
+
+\subsection{Model}
+
+\begin{center}
+\begin{tikzpicture}
+\node[shape=circle, draw=black] (X) at (-1, 0) {$x$};
+\node[shape=circle, draw=black] (Y) at (1, 0) {$y$};
+\draw[->] (X) -- node[above] {$w$} (Y);
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+y = x \cdot w
+\end{align*}
+
+\subsection{Cost}
+
+\begin{align*}
+C &= \frac{1}{n} \sum _{i=1} ^{n} \left( x_i w - y_i \right) ^2\\
+\frac{dC}{dw} &= \frac{d}{dw} \left( \frac{1}{n} \sum _{i=1} ^{n} \left( x_i w - y_i \right) ^2 \right)\\
+&= \frac{1}{n} \frac{d}{dw} \left( \sum _{i=1} ^{n} \left( x_i w - y_i \right) ^2 \right)\\
+&= \frac{1}{n} \sum _{i=1} ^{n} \frac{d}{dw} \left( \left( x_i w - y_i \right) ^2 \right)\\
+&= \frac{1}{n} \sum _{i=1} ^{n} 2 \left( x_i w - y_i \right) x_i\\
+\end{align*}
+
+\end{document}
