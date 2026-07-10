@@ -43,9 +43,9 @@ float gradient_cost_w(float w) {
 }
 
 int main(void) {
-    float rate = 1e-2;
-
     srand(time(0));
+
+    float rate = 1e-2;
 
     float w = randf(-10, 10);
 

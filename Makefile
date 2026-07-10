@@ -1,14 +1,15 @@
 CFLAGS = -std=c99 -pedantic -Wall -Wextra -O2
-LDFLAGS =
+LDFLAGS = -lm
 
 .PHONY: all clean
 
-all: twice
+all: twice gates
 
 twice: twice.c
+gates: gates.c
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
-	rm -f twice
+	rm -f twice gates
