@@ -53,7 +53,8 @@ float sigmoidf(float x) {
 float cost(float w1, float w2, float b) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x1 = dataset[i][0];
         float x2 = dataset[i][1];
         float y = dataset[i][2];
@@ -63,20 +64,25 @@ float cost(float w1, float w2, float b) {
         result += d*d;
     }
 
+    result /= (float)n;
+
     return result;
 }
 
 float gradient_cost_w1(float w1, float w2, float b) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x1 = dataset[i][0];
         float x2 = dataset[i][1];
         float y = dataset[i][2];
 
         float a = sigmoidf(x1 * w1 + x2 * w2 + b);
-        result += 2 * (a - y) * a * (1 - a) * x1;
+        result += 2.0f * (a - y) * a * (1 - a) * x1;
     }
+
+    result /= (float)n;
 
     return result;
 }
@@ -84,14 +90,17 @@ float gradient_cost_w1(float w1, float w2, float b) {
 float gradient_cost_w2(float w1, float w2, float b) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x1 = dataset[i][0];
         float x2 = dataset[i][1];
         float y = dataset[i][2];
 
         float a = sigmoidf(x1 * w1 + x2 * w2 + b);
-        result += 2 * (a - y) * a * (1 - a) * x2;
+        result += 2.0f * (a - y) * a * (1 - a) * x2;
     }
+
+    result /= (float)n;
 
     return result;
 }
@@ -99,14 +108,17 @@ float gradient_cost_w2(float w1, float w2, float b) {
 float gradient_cost_b(float w1, float w2, float b) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x1 = dataset[i][0];
         float x2 = dataset[i][1];
         float y = dataset[i][2];
 
         float a = sigmoidf(x1 * w1 + x2 * w2 + b);
-        result += 2 * (a - y) * a * (1 - a);
+        result += 2.0f * (a - y) * a * (1 - a);
     }
+
+    result /= (float)n;
 
     return result;
 }
@@ -155,4 +167,3 @@ int main(void) {
 
     return 0;
 }
-

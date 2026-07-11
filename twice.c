@@ -32,12 +32,15 @@ float cost(float w) {
 float gradient_cost_w(float w) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x = dataset[i][0];
         float y = dataset[i][1];
 
         result += 2*(x*w - y)*x;
     }
+
+    result /= (float)n;
 
     return result;
 }
@@ -45,7 +48,7 @@ float gradient_cost_w(float w) {
 int main(void) {
     srand(time(0));
 
-    float rate = 1e-2;
+    float rate = 1e-1;
 
     float w = randf(-10, 10);
 

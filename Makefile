@@ -3,13 +3,14 @@ LDFLAGS = -lm
 
 .PHONY: all clean
 
-all: twice gates
+all: twice gates xor
 
 twice: twice.c
 gates: gates.c
+xor: xor.c
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
-	rm -f twice gates
+	rm -f twice gates xor
