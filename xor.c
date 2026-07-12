@@ -96,8 +96,8 @@ float cost(Model model) {
         float x2 = dataset[i][1];
         float z1 = dataset[i][2];
 
-        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_21 + model.b1_1);
-        float a1_2 = sigmoidf(x1*model.w1_12 + x2*model.w1_22 + model.b1_2);
+        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_12 + model.b1_1);
+        float a1_2 = sigmoidf(x1*model.w1_21 + x2*model.w1_22 + model.b1_2);
         float a2_1 = sigmoidf(a1_1*model.w2_11 + a1_2*model.w2_12 + model.b2_1);
 
         float d = a2_1 - z1;
@@ -171,8 +171,8 @@ Model gradient_cost(Model model) {
         float x2 = dataset[i][1];
         float z1 = dataset[i][2];
 
-        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_21 + model.b1_1);
-        float a1_2 = sigmoidf(x1*model.w1_12 + x2*model.w1_22 + model.b1_2);
+        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_12 + model.b1_1);
+        float a1_2 = sigmoidf(x1*model.w1_21 + x2*model.w1_22 + model.b1_2);
         float a2_1 = sigmoidf(a1_1*model.w2_11 + a1_2*model.w2_12 + model.b2_1);
 
         gradient.w2_11 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_1;
@@ -181,12 +181,59 @@ Model gradient_cost(Model model) {
         gradient.b2_1 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1);
 
         gradient.w1_11 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_1 * (1.0f - a1_1) * x1 * model.w2_11;
-        gradient.w1_21 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_1 * (1.0f - a1_1) * x2 * model.w2_11;
-        gradient.w1_12 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_2 * (1.0f - a1_2) * x1 * model.w2_12;
+        gradient.w1_12 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_1 * (1.0f - a1_1) * x2 * model.w2_11;
+        gradient.w1_21 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_2 * (1.0f - a1_2) * x1 * model.w2_12;
         gradient.w1_22 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_2 * (1.0f - a1_2) * x2 * model.w2_12;
 
         gradient.b1_1 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_1 * (1.0f - a1_1) * model.w2_11;
         gradient.b1_2 += 2.0f * (a2_1 - z1) * a2_1 * (1.0f - a2_1) * a1_2 * (1.0f - a1_2) * model.w2_12;
+    }
+
+    gradient.w2_11 /= (float)n;
+    gradient.w2_12 /= (float)n;
+
+    gradient.b2_1 /= (float)n;
+
+    gradient.w1_11 /= (float)n;
+    gradient.w1_21 /= (float)n;
+    gradient.w1_12 /= (float)n;
+    gradient.w1_22 /= (float)n;
+
+    gradient.b1_1 /= (float)n;
+    gradient.b1_2 /= (float)n;
+
+    return gradient;
+}
+
+Model backpropagation(Model model) {
+    Model gradient = {0};
+
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
+        float x1 = dataset[i][0];
+        float x2 = dataset[i][1];
+        float z1 = dataset[i][2];
+
+        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_12 + model.b1_1);
+        float a1_2 = sigmoidf(x1*model.w1_21 + x2*model.w1_22 + model.b1_2);
+        float a2_1 = sigmoidf(a1_1*model.w2_11 + a1_2*model.w2_12 + model.b2_1);
+
+        float C__a2_1 = 2.0f * (a2_1 - z1);
+        float C__a1_1 = C__a2_1 * a2_1 * (1 - a2_1) * model.w2_11;
+        float C__a1_2 = C__a2_1 * a2_1 * (1 - a2_1) * model.w2_12;
+
+        gradient.w2_11 += C__a2_1 * a2_1 * (1 - a2_1) * a1_1;
+        gradient.w2_12 += C__a2_1 * a2_1 * (1 - a2_1) * a1_2;
+
+        gradient.b2_1 += C__a2_1 * a2_1 * (1 - a2_1);
+
+        gradient.w1_11 += C__a1_1 * a1_1 * (1 - a1_1) * x1;
+        gradient.w1_12 += C__a1_1 * a1_1 * (1 - a1_1) * x2;
+        gradient.w1_21 += C__a1_2 * a1_2 * (1 - a1_2) * x1;
+        gradient.w1_22 += C__a1_2 * a1_2 * (1 - a1_2) * x2;
+
+        gradient.b1_1 += C__a1_1 * a1_1 * (1 - a1_1);
+        gradient.b1_2 += C__a1_2 * a1_2 * (1 - a1_2);
     }
 
     gradient.w2_11 /= (float)n;
@@ -243,27 +290,25 @@ int main(void) {
     model.b2_1 = randf(0, 1);
 
     printf("inital cost: %f\n", cost(model));
-    printf("\n");
 
     for (size_t i = 0; i < 100 * 1000; i++) {
         //Model gradient = finite_difference(model, 1e-1);
-        Model gradient = gradient_cost(model);
+        //Model gradient = gradient_cost(model);
+        Model gradient = backpropagation(model);
         model = gradient_descent(model, gradient, rate);
 
-        printf("cost: %f\n", cost(model));
+        //printf("cost: %f\n", cost(model));
     }
 
-    printf("\n");
     printf("final cost: %f\n", cost(model));
-    printf("\n");
 
     for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
         float x1 = dataset[i][0];
         float x2 = dataset[i][1];
         float z1 = dataset[i][2];
 
-        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_21 + model.b1_1);
-        float a1_2 = sigmoidf(x1*model.w1_12 + x2*model.w1_22 + model.b1_2);
+        float a1_1 = sigmoidf(x1*model.w1_11 + x2*model.w1_12 + model.b1_1);
+        float a1_2 = sigmoidf(x1*model.w1_21 + x2*model.w1_22 + model.b1_2);
         float a2_1 = sigmoidf(a1_1*model.w2_11 + a1_2*model.w2_12 + model.b2_1);
 
         printf("%f %f | %f | %f\n", x1, x2, z1, a2_1);

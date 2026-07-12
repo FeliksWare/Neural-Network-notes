@@ -18,13 +18,16 @@ float randf(float min, float max) {
 float cost(float w) {
     float result = 0;
 
-    for (size_t i = 0; i < ARRAY_LENGTH(dataset); i++) {
+    size_t n = ARRAY_LENGTH(dataset);
+    for (size_t i = 0; i < n; i++) {
         float x = dataset[i][0];
         float y = dataset[i][1];
 
         float d = x*w - y;
         result += d*d;
     }
+
+    result /= (float)n;
 
     return result;
 }
@@ -54,11 +57,11 @@ int main(void) {
 
     printf("initial cost: %f\n", cost(w));
     printf("initial w: %f\n", w);
-    printf("\n");
 
     for (size_t i = 0; i < 40; i++) {
         w -= rate * gradient_cost_w(w);
-        printf("cost: %f\n", cost(w));
+
+        //printf("cost: %f\n", cost(w));
     }
 
     printf("\n");

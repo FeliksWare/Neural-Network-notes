@@ -136,7 +136,6 @@ int main(void) {
     printf("inital w1: %f\n", w1);
     printf("inital w2: %f\n", w1);
     printf("inital b: %f\n", b);
-    printf("\n");
 
     for (size_t i = 0; i < 100*1000; i++) {
         float gw1 = gradient_cost_w1(w1, w2, b);
@@ -146,7 +145,8 @@ int main(void) {
         w1 -= gw1 * rate;
         w2 -= gw2 * rate;
         b -= gb * rate;
-        printf("cost: %f\n", cost(w1, w2, b));
+        
+        //printf("cost: %f\n", cost(w1, w2, b));
     }
 
     printf("\n");

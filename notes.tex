@@ -133,8 +133,8 @@ C &= (a - y)^2\\
 \end{center}
 
 \begin{align*}
-&y_1 = \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-&y_2 = \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+&y_1 = \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+&y_2 = \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 &z_1 = \sigma(y_1 w^2_{11} + y_2 w^2_{12} + b^2_1)\\
 &\sigma(x) = \frac{1}{1 + e^{-x}}\\
 &\frac{d}{dx}\sigma(x) = \sigma(x)(1 - \sigma(x))
@@ -143,44 +143,44 @@ C &= (a - y)^2\\
 \subsection{Cost}
 
 \begin{align*}
-a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-a^1_2 &= \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+a^1_2 &= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 a^2_1 &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_1}{\partial w^1_{11}} &= \frac{\partial}{\partial w^1_{11}} \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-&= \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)) \frac{\partial}{\partial w^1_{11}} (x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
+\frac{\partial a^1_1}{\partial w^1_{11}} &= \frac{\partial}{\partial w^1_{11}} \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+&= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)) \frac{\partial}{\partial w^1_{11}} (x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
 &= a^1_1(1 - a^1_1)x_1
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_1}{\partial w^1_{21}} &= \frac{\partial}{\partial w^1_{21}} \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-&= \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)) \frac{\partial}{\partial w^1_{21}} (x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
+\frac{\partial a^1_1}{\partial w^1_{12}} &= \frac{\partial}{\partial w^1_{12}} \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+&= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)) \frac{\partial}{\partial w^1_{12}} (x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
 &= a^1_1(1 - a^1_1)x_2
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_2}{\partial w^1_{12}} &= \frac{\partial}{\partial w^1_{12}} \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
-&= \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)) \frac{\partial}{\partial w^1_{12}} (x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+\frac{\partial a^1_2}{\partial w^1_{21}} &= \frac{\partial}{\partial w^1_{21}} \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
+&= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)) \frac{\partial}{\partial w^1_{21}} (x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 &= a^1_2(1 - a^1_2)x_1
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_2}{\partial w^1_{22}} &= \frac{\partial}{\partial w^1_{22}} \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
-&= \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)) \frac{\partial a^1_2}{\partial w^1_{22}} \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+\frac{\partial a^1_2}{\partial w^1_{22}} &= \frac{\partial}{\partial w^1_{22}} \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
+&= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)) \frac{\partial a^1_2}{\partial w^1_{22}} \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 &= a^1_2(1 - a^1_2)x_2
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_1}{\partial b^1_1} &= \frac{\partial}{\partial b^1_1} \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-&= \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)) \frac{\partial}{\partial b^1_1} (x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
+\frac{\partial a^1_1}{\partial b^1_1} &= \frac{\partial}{\partial b^1_1} \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+&= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)(1 - \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)) \frac{\partial}{\partial b^1_1} (x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
 &= a^1_1(1 - a^1_1)
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^1_2}{\partial b^1_2} &= \frac{\partial}{\partial b^1_2} \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
-&= \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)) \frac{\partial}{\partial b^1_2} (x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+\frac{\partial a^1_2}{\partial b^1_2} &= \frac{\partial}{\partial b^1_2} \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
+&= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)(1 - \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)) \frac{\partial}{\partial b^1_2} (x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 &= a^1_2(1 - a^1_2)
 \end{align*}
 
@@ -208,12 +208,12 @@ a^2_1 &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^2_1}{\partial w^1_{21}} &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial w^1_{21}}(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+\frac{\partial a^2_1}{\partial w^1_{12}} &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial w^1_{12}}(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
 &= a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_2w^2_{11}
 \end{align*}
 
 \begin{align*}
-\frac{\partial a^2_1}{\partial w^1_{12}} &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial w^1_{12}}(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+\frac{\partial a^2_1}{\partial w^1_{21}} &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial w^1_{21}}(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
 &= a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_1w^2_{12}
 \end{align*}
 
@@ -261,14 +261,14 @@ C &= (a^2_1 - z_1)^2
 \end{align*}
 
 \begin{align*}
-\frac{\partial C}{\partial w^1_{21}} &= \frac{\partial}{\partial w^1_{21}} (a^2_1 - z_1)^2\\
-&= 2 (a^2_1 - z_1) \frac{\partial}{\partial w^1_{21}} (a^2_1 - z_1)\\
+\frac{\partial C}{\partial w^1_{12}} &= \frac{\partial}{\partial w^1_{12}} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) \frac{\partial}{\partial w^1_{12}} (a^2_1 - z_1)\\
 &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_2w^2_{11}
 \end{align*}
 
 \begin{align*}
-\frac{\partial C}{\partial w^1_{12}} &= \frac{\partial}{\partial w^1_{12}} (a^2_1 - z_1)^2\\
-&= 2 (a^2_1 - z_1) \frac{\partial}{\partial w^1_{12}} (a^2_1 - z_1)\\
+\frac{\partial C}{\partial w^1_{21}} &= \frac{\partial}{\partial w^1_{21}} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) \frac{\partial}{\partial w^1_{21}} (a^2_1 - z_1)\\
 &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_1w^2_{12}
 \end{align*}
 
@@ -293,8 +293,8 @@ C &= (a^2_1 - z_1)^2
 \subsection{Cost - Simplified}
 
 \begin{align*}
-a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{21} + b^1_1)\\
-a^1_2 &= \sigma(x_1 w^1_{12} + x_2 w^1_{22} + b^1_2)\\
+a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+a^1_2 &= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
 a^2_1 &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
 %
 C &= (a^2_1 - z_1)^2\\
@@ -307,15 +307,227 @@ C &= (a^2_1 - z_1)^2\\
 %
 \frac{\partial C}{\partial w^1_{11}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_1w^2_{11}\\
 %
-\frac{\partial C}{\partial w^1_{21}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_2w^2_{11}\\
+\frac{\partial C}{\partial w^1_{12}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_2w^2_{11}\\
 %
-\frac{\partial C}{\partial w^1_{12}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_1w^2_{12}\\
+\frac{\partial C}{\partial w^1_{21}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_1w^2_{12}\\
 %
 \frac{\partial C}{\partial w^1_{22}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_2w^2_{12}\\
 %
 \frac{\partial C}{\partial b^1_1} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)w^2_{11}\\
 %
 \frac{\partial C}{\partial b^1_2} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)w^2_{12}\\
+\end{align*}
+
+\subsection{Backpropagation}
+
+\begin{align*}
+a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+a^1_2 &= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
+a^2_1 &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)
+\end{align*}
+
+\begin{align*}
+\frac{\partial a^2_1}{\partial a^1_1} &= \frac{\partial}{\partial a^1_1} \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+&= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial a^1_1} (a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+&= a^2_1 (1 - a^2_1) w^2_{11}
+\end{align*}
+
+\begin{align*}
+\frac{\partial a^2_1}{\partial a^1_2} &= \frac{\partial}{\partial a^1_2} \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+&= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)(1 - \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)) \frac{\partial}{\partial a^1_2} (a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+&= a^2_1 (1 - a^2_1) w^2_{12}
+\end{align*}
+
+\begin{align*}
+C &= (a^2_1 - z_1)^2
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial a^2_1} &= \frac{\partial}{\partial a^2_1} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) \frac{\partial}{\partial a^2_1} (a^2_1 - z_1)\\
+&= 2 (a^2_1 - z_1)
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial a^1_1} &= \frac{\partial}{\partial a^1_1} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) \frac{\partial}{\partial a^1_1} (a^2_1 - z_1)\\
+&= 2 (a^2_1 - z_1) a^2_1 (1 - a^2_1) w^2_{11}\\
+&= \frac{\partial C}{\partial a^2_1} a^2_1 (1 - a^2_1) w^2_{11}
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial a^1_2} &= \frac{\partial}{\partial a^1_1} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) \frac{\partial}{\partial a^1_1} (a^2_1 - z_1)^2\\
+&= 2 (a^2_1 - z_1) a^2_1 (1 - a^2_1) w^2_{12}\\
+&= \frac{\partial C}{\partial a^2_1} a^2_1 (1 - a^2_1) w^2_{12}
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^2_{11}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1\\
+&= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)a^1_1
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^2_{12}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2\\
+&= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)a^1_2
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial b^2_{1}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)\\
+&= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^1_{11}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_1w^2_{11}\\
+&= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1) x_1
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^1_{12}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)x_2w^2_{11}\\
+&= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1) x_2
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^1_{21}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_1w^2_{12}\\
+&= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2) x_1
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial w^1_{22}} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)x_2w^2_{12}\\
+&= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2) x_2
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial b^1_1} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_1(1 - a^1_1)w^2_{11}\\
+&= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1)
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial b^1_2} &= 2 (a^2_1 - z_1) a^2_1(1 - a^2_1)a^1_2(1 - a^1_2)w^2_{12}\\
+&= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2)
+\end{align*}
+
+\subsection{Backpropagation - Simplified}
+
+\begin{align*}
+a^1_1 &= \sigma(x_1 w^1_{11} + x_2 w^1_{12} + b^1_1)\\
+a^1_2 &= \sigma(x_1 w^1_{21} + x_2 w^1_{22} + b^1_2)\\
+a^2_1 &= \sigma(a^1_1 w^2_{11} + a^1_2 w^2_{12} + b^2_1)\\
+%
+C &= (a^2_1 - z_1)^2\\
+%
+\frac{\partial C}{\partial a^2_1} &= 2 (a^2_1 - z_1)\\
+%
+\frac{\partial C}{\partial a^1_1} &= \frac{\partial C}{\partial a^2_1} a^2_1 (1 - a^2_1) w^2_{11}\\
+%
+\frac{\partial C}{\partial a^1_2} &= \frac{\partial C}{\partial a^2_1} a^2_1 (1 - a^2_1) w^2_{12}\\
+%
+\frac{\partial C}{\partial w^2_{11}} &= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)a^1_1\\
+%
+\frac{\partial C}{\partial w^2_{12}} &= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)a^1_2\\
+%
+\frac{\partial C}{\partial b^2_{1}} &= \frac{\partial C}{\partial a^2_1} a^2_1(1 - a^2_1)\\
+%
+\frac{\partial C}{\partial w^1_{11}} &= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1) x_1\\
+%
+\frac{\partial C}{\partial w^1_{12}} &= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1) x_2\\
+%
+\frac{\partial C}{\partial w^1_{21}} &= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2) x_1\\
+%
+\frac{\partial C}{\partial w^1_{22}} &= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2) x_2\\
+%
+\frac{\partial C}{\partial b^1_1} &= \frac{\partial C}{\partial a^1_1} a^1_1 (1 - a^1_1)\\
+%
+\frac{\partial C}{\partial b^1_2} &= \frac{\partial C}{\partial a^1_2} a^1_2 (1 - a^1_2)\\
+\end{align*}
+
+\subsection{Backpropagation - Generalised}
+
+\begin{align*}
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) w^{(l)}_{jk}\\
+\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
+\end{align*}
+
+\section{Backpropagation - Column}
+
+\begin{align*}
+a^{(l)} =
+\begin{bmatrix}
+a^{(l)}_0\\
+a^{(l)}_1\\
+\vdots\\
+a^{(l)}_n
+\end{bmatrix}
+%
+\qquad \qquad
+%
+b^{(l)} = 
+\begin{bmatrix}
+b^{(l)}_0\\
+b^{(l)}_1\\
+\vdots\\
+b^{(l)}_n\\
+\end{bmatrix}
+%
+\qquad \qquad
+%
+w^{(l)} = 
+\begin{bmatrix}
+w^{(l)}_{11} & w^{(l)}_{12} & \cdots & w^{(l)}_{1n}\\
+w^{(l)}_{21} & w^{(l)}_{22} & \cdots & w^{(l)}_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
+\end{bmatrix}
+\end{align*}
+
+\begin{align*}
+&a^{(0)} = x\\
+&a^{(l + 1)} = \sigma(w^{(l)} \cdot a^{(l)} + b^{(l)})
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) w^{(l)}_{jk}\\
+\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
+\end{align*}
+
+\section{Backpropagation - Row}
+
+\begin{align*}
+a^{(l)} =
+\begin{bmatrix}
+a^{(l)}_0 & a^{(l)}_1 & \cdots & a^{(l)}_m
+\end{bmatrix}
+%
+\qquad \qquad
+%
+b^{(l)} = 
+\begin{bmatrix}
+b^{(l)}_0 & b^{(l)}_1 & \cdots & b^{(l)}_m
+\end{bmatrix}
+\end{align*}
+\begin{align*}
+w^{(l)} = 
+\begin{bmatrix}
+w^{(l)}_{11} & w^{(l)}_{12} & \cdots & w^{(l)}_{1n}\\
+w^{(l)}_{21} & w^{(l)}_{22} & \cdots & w^{(l)}_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
+\end{bmatrix}
+\end{align*}
+
+\begin{align*}
+&a^{(0)} = x\\
+&a^{(l + 1)} = \sigma(a^{(l)} \cdot w^{(l)} + b^{(l)})
+\end{align*}
+
+\begin{align*}
+\frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) w^{(l)}_{kj}\\
+\frac{\partial C}{\partial w^{(l)}_{kj}} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
 \end{align*}
 
 \end{document}
