@@ -449,7 +449,9 @@ C &= (a^2_1 - z_1)^2\\
 \frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
 \end{align*}
 
-\section{Backpropagation - Column}
+\section{Backpropagation}
+
+\subsection{Column}
 
 \begin{align*}
 a^{(l)} =
@@ -483,17 +485,19 @@ w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
 
 \begin{align*}
 &a^{(0)} = x\\
-&a^{(l + 1)} = \sigma(w^{(l)} \cdot a^{(l)} + b^{(l)})
+&z^{(l + 1)} = a^{(l)} \cdot w^{(l)} + b^{(l)}\\
+&a^{(l)} = \sigma(z^{(l)})
 \end{align*}
 
 \begin{align*}
+C &= (a^{(l)} - y)^2\\
 \frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
-\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) w^{(l)}_{jk}\\
-\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) a^{(l - 1)}_k\\
-\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) w^{(l)}_{jk}\\
+\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j)\\
 \end{align*}
 
-\section{Backpropagation - Row}
+\subsection{Row}
 
 \begin{align*}
 a^{(l)} =
@@ -520,14 +524,16 @@ w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
 
 \begin{align*}
 &a^{(0)} = x\\
-&a^{(l + 1)} = \sigma(a^{(l)} \cdot w^{(l)} + b^{(l)})
+&z^{(l + 1)} = a^{(l)} \cdot w^{(l)} + b^{(l)}\\
+&a^{(l)} = \sigma(z^{(l)})
 \end{align*}
 
 \begin{align*}
+C &= (a^{(l)} - y)^2\\
 \frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
-\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) w^{(l)}_{kj}\\
-\frac{\partial C}{\partial w^{(l)}_{kj}} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j) a^{(l - 1)}_k\\
-\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} a^{(l)}_j (1 - a^{(l)}_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) w^{(l)}_{kj}\\
+\frac{\partial C}{\partial w^{(l)}_{kj}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j)\\
 \end{align*}
 
 \end{document}
