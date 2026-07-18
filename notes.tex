@@ -492,9 +492,9 @@ w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
 \begin{align*}
 C &= (a^{(l)} - y)^2\\
 \frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
-\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) w^{(l)}_{jk}\\
-\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) a^{(l - 1)}_k\\
-\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j) w^{(l)}_{jk}\\
+\frac{\partial C}{\partial w^{(l)}_{jk}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j)\\
 \end{align*}
 
 \subsection{Row}
@@ -531,9 +531,9 @@ w^{(l)}_{m1} & w^{(l)}_{m2} & \cdots & w^{(l)}_{mn}\\
 \begin{align*}
 C &= (a^{(l)} - y)^2\\
 \frac{\partial C}{\partial a^{(L)}_j} &= 2 (a^{(L)}_j - y_j)\\
-\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) w^{(l)}_{kj}\\
-\frac{\partial C}{\partial w^{(l)}_{kj}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j) a^{(l - 1)}_k\\
-\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma^{-1}(z^{(l)}_j)\\
+\frac{\partial C}{\partial a^{(l - 1)}_k} &= \sum _j \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j) w^{(l)}_{kj}\\
+\frac{\partial C}{\partial w^{(l)}_{kj}} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j) a^{(l - 1)}_k\\
+\frac{\partial C}{\partial b^{(l)}_j} &= \frac{\partial C}{\partial a^{(l)}_j} \sigma'(z^{(l)}_j)\\
 \end{align*}
 
 \end{document}
